@@ -118,20 +118,20 @@ static void OnBtnNewPageClicked(GtkButton *button)
 	  gtk_container_add((GtkContainer*)g_gtkEventBoxes[iNewPageId], (GtkWidget*)g_gtkLabels[iNewPageId]);
 	  gtk_widget_show_all((GtkWidget*)g_gtkLabels[iNewPageId]);
 
-		char szPageId[10];
-		sprintf(szPageId, "Page %d", iNewPageId);
+	  char szPageId[10];
+	  sprintf(szPageId, "Page %d", iNewPageId);
 
 	  gtk_widget_set_name(pNotebookPage, szPageId);
 	  gtk_label_set_text((GtkLabel*)gtkLabel, szPageId);
 
-		GList *pageWidgetSet = gtk_container_get_children(GTK_CONTAINER(pNotebookPage));
+	  GList *pageWidgetSet = gtk_container_get_children(GTK_CONTAINER(pNotebookPage));
 
 	  g_mnuRemovePage[iNewPageId] = gtk_menu_new();
 	  g_mnuItemRemove[iNewPageId] = gtk_menu_item_new_with_label("Remove");
 
-		g_pPageInfo[iNewPageId] = new PageInfo();
-		g_pPageInfo[iNewPageId]->iPageId = iNewPageId;
-		g_pPageInfo[iNewPageId]->txtPageEntryField = (GtkEntry*)gtk_builder_get_object(bldrPage, "txtPageEntryField");
+	  g_pPageInfo[iNewPageId] = new PageInfo();
+	  g_pPageInfo[iNewPageId]->iPageId = iNewPageId;
+	  g_pPageInfo[iNewPageId]->txtPageEntryField = (GtkEntry*)gtk_builder_get_object(bldrPage, "txtPageEntryField");
 
 	  g_signal_connect(g_mnuItemRemove[iNewPageId], "activate", G_CALLBACK(OnMnuRemovePage), g_pPageInfo[iNewPageId]);
 	  gtk_menu_attach((GtkMenu*)g_mnuRemovePage[iNewPageId], (GtkWidget*)g_mnuItemRemove[iNewPageId], 0, 1, 0, 1);
@@ -139,7 +139,7 @@ static void OnBtnNewPageClicked(GtkButton *button)
 
 	  g_signal_connect(g_gtkEventBoxes[iNewPageId], "button_press_event", G_CALLBACK(OnButtonPress), g_pPageInfo[iNewPageId]);
 
-		g_list_foreach(pageWidgetSet, ForEachWidgetOnThePage, g_pPageInfo[iNewPageId]);
+	  g_list_foreach(pageWidgetSet, ForEachWidgetOnThePage, g_pPageInfo[iNewPageId]);
 
 	  g_object_unref(bldrPage);
 	}
@@ -165,16 +165,16 @@ static void activate(GtkApplication *app, gpointer user_data)
 
   //Place a button that can be used to add pages to the Notebook object
   GtkButton *btnNewPage = (GtkButton*)gtk_builder_get_object(bldrMain, "btnNewPage");
-	g_signal_connect(btnNewPage, "clicked", G_CALLBACK(OnBtnNewPageClicked), NULL);
+  g_signal_connect(btnNewPage, "clicked", G_CALLBACK(OnBtnNewPageClicked), NULL);
 
-	//Place a label on the Main Window that can be populated by the Notebook Pages.
-	//Note that "lblPageMessage" is what is defined in the Glade ID field (without quotes)
+  //Place a label on the Main Window that can be populated by the Notebook Pages.
+  //Note that "lblPageMessage" is what is defined in the Glade ID field (without quotes)
   g_lblPageMessage = (GtkLabel*)gtk_builder_get_object(bldrMain, "lblPageMessage");
 
   //Place an empty Notebook on the Main Page
   g_Notebook = (GtkNotebook*)gtk_builder_get_object(bldrMain, "gtkNotebook");
   gtk_notebook_set_scrollable(g_Notebook, true);
-	g_signal_connect(g_Notebook, "page-added", G_CALLBACK(OnPageAdded), NULL);
+  g_signal_connect(g_Notebook, "page-added", G_CALLBACK(OnPageAdded), NULL);
 
   //Present the Main Window
   gtk_window_set_position((GtkWindow*)AppWindow, GTK_WIN_POS_CENTER);
