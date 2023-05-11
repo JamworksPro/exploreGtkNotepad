@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
+<interface>
+  <requires lib="gtk+" version="3.24"/>
+  <object class="GtkFixed" id="NotebookPage">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <child>
+      <object class="GtkButton" id="btnPageAction">
+        <property name="label" translatable="yes">Action</property>
+        <property name="name">btnPageAction</property>
+        <property name="width-request">30</property>
+        <property name="height-request">20</property>
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+        <property name="receives-default">True</property>
+      </object>
+      <packing>
+        <property name="x">10</property>
+        <property name="y">10</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkEntry" id="txtPageEntryField">
+        <property name="width-request">50</property>
+        <property name="height-request">40</property>
+        <property name="visible">True</property>
+        <property name="can-focus">True</property>
+      </object>
+      <packing>
+        <property name="x">100</property>
+        <property name="y">10</property>
+      </packing>
+    </child>
+  </object>
+</interface>
